@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>易經卜卦系統 - 傳統智慧現代呈現</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 背景裝飾 -->
+    <div class="background-decoration">
+        <div class="taiji-bg"></div>
+        <div class="cloud-pattern"></div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 頭部區域 -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="main-title">
+                    <span class="title-decoration">◆</span>
+                    易經卜卦系統
+                    <span class="title-decoration">◆</span>
+                </h1>
+                <p class="subtitle">傳承千年智慧，探索人生奧秘</p>
+            </div>
+        </header>
+
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- 輸入區域 -->
+                <section class="input-section">
+                    <div class="input-card">
+                        <h2 class="section-title">
+                            <span class="icon">☯</span>
+                            卜卦設定
+                        </h2>
+                        
+                        <div class="input-group">
+                            <label for="guaCode" class="input-label">
+                                <span class="label-text">卦象六碼</span>
+                                <span class="label-hint">請輸入6位數字（0或1）</span>
+                            </label>
+                            <input type="text" id="guaCode" class="input-field" maxlength="6" placeholder="例：111000">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="dongYao" class="input-label">
+                                <span class="label-text">動爻</span>
+                                <span class="label-hint">選擇動爻位置（1-6）</span>
+                            </label>
+                            <select id="dongYao" class="select-field">
+                                <option value="">請選擇動爻</option>
+                                <option value="1">初爻（第一爻）</option>
+                                <option value="2">二爻（第二爻）</option>
+                                <option value="3">三爻（第三爻）</option>
+                                <option value="4">四爻（第四爻）</option>
+                                <option value="5">五爻（第五爻）</option>
+                                <option value="6">上爻（第六爻）</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="ganSelect" class="input-label">
+                                <span class="label-text">日期天干</span>
+                                <span class="label-hint">選擇對應的天干</span>
+                            </label>
+                            <select id="ganSelect" class="select-field">
+                                <option value="甲乙">甲乙日</option>
+                                <option value="丙丁">丙丁日</option>
+                                <option value="戊">戊日</option>
+                                <option value="己">己日</option>
+                                <option value="庚辛">庚辛日</option>
+                                <option value="壬癸">壬癸日</option>
+                            </select>
+                        </div>
+
+                        <button onclick="calculate()" class="calculate-btn">
+                            <span class="btn-icon">⚊⚋</span>
+                            開始卜卦
+                            <span class="btn-glow"></span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 結果區域 -->
+                <section class="result-section">
+                    <div class="result-card">
+                        <h2 id="guaName" class="gua-name">卦象名稱：請先進行卜卦</h2>
+                        
+                        <div id="guaDiagram" class="gua-diagram">
+                            <div class="placeholder-content">
+                                <div class="placeholder-taiji">☯</div>
+                                <p>卦象將在此顯示</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- 底部區域 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 易經卜卦系統 | 傳承古典智慧</p>
+                <div class="footer-decoration">
+                    <span>◇</span>
+                    <span>◆</span>
+                    <span>◇</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 載入動畫 -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-taiji"></div>
+            <p>正在計算卦象...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
