@@ -311,6 +311,7 @@ body {
     border-radius: 6px;
     background: rgba(248, 246, 240, 0.5);
     transition: all 0.3s ease;
+    font-size: 0.85rem;/*這是新增的!!!*/
 }
 
 .gua-diagram td:hover {
@@ -321,7 +322,7 @@ body {
 /* 爻線樣式 */
 .yao-line {
     font-family: monospace;
-    font-size: 1.2rem;
+    font-size: 2rem;/*1.2*/
     font-weight: bold;
     letter-spacing: 2px;
 }
