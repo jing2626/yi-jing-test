@@ -179,7 +179,7 @@ body {
 .label-text {
     font-weight: 600; 
     color: var(--text-color);
-    font-size: 2rem; /*1*/
+    font-size: 5rem; /*1*/
 }
 
 .label-hint {
