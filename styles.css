@@ -311,18 +311,19 @@ body {
     border-radius: 6px;
     background: rgba(248, 246, 240, 0.5);
     transition: all 0.3s ease;
-    font-size: 0.85rem;/*這是新增的!!!*/
+    font-size: 1rem;/*這是新增的!!!*/
 }
 
 .gua-diagram td:hover {
     background: rgba(212, 175, 55, 0.1);
     transform: scale(1.05);
+    font-size: 1rem;/*這是新增的!!!*/
 }
 
 /* 爻線樣式 */
 .yao-line {
     font-family: monospace;
-    font-size: 2rem;/*1.2*/
+    font-size: 1.2rem;
     font-weight: bold;
     letter-spacing: 2px;
 }
