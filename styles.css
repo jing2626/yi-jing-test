@@ -177,9 +177,9 @@ body {
 }
 
 .label-text {
-    font-weight: 600; 
+    font-weight: 500; 
     color: var(--text-color);
-    font-size: 5rem; /*1*/
+    font-size: 1rem;
 }
 
 .label-hint {
@@ -311,6 +311,7 @@ body {
     border-radius: 6px;
     background: rgba(248, 246, 240, 0.5);
     transition: all 0.3s ease;
+    font-size: 2rem; /*這個是新增的!!!*/
 }
 
 .gua-diagram td:hover {
