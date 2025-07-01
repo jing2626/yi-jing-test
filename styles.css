@@ -316,7 +316,6 @@ body {
 .gua-diagram td:hover {
     background: rgba(212, 175, 55, 0.1);
     transform: scale(1.05);
-    font-size: 1.5rem; /*這個是新增的!!!*/
 }
 
 /* 爻線樣式 */
