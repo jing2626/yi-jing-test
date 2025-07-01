@@ -177,9 +177,9 @@ body {
 }
 
 .label-text {
-    font-weight: 800; /*500*/
+    font-weight: 600; 
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 2rem; /*1*/
 }
 
 .label-hint {
@@ -307,7 +307,7 @@ body {
 .gua-diagram td {
     padding: 8px;
     text-align: center;
-    font-weight: 800; /*500*/
+    font-weight: 500;
     border-radius: 6px;
     background: rgba(248, 246, 240, 0.5);
     transition: all 0.3s ease;
