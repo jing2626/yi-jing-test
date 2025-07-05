@@ -473,6 +473,36 @@ body {
     .input-card, .result-card {
         padding: 15px;
     }
+    .gua-diagram td {
+        font-size: 2.8rem; /* 原本2.4rem => 提高一點，確保手機上明顯放大 */
+    }
+
+    .yao-line {
+        font-size: 0.2rem; /* 再縮小一點爻線字體 */
+    }
+
+    .gua-diagram table {
+        border-spacing: 2px; /* 壓縮表格間距 */
+    }
+
+    .gua-diagram td {
+        padding: 5px;
+    }
+    .yao-image {
+        width: 20px; /* 原本 50px，手機上縮小一點 */
+    }
+    
+    body::before {
+        content: "小手機模式";
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: red;
+        color: white;
+        padding: 4px;
+        z-index: 9999;
+        font-size: 12px;
+    }
 }
 
 /* 動畫效果 */
