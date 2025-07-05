@@ -444,7 +444,7 @@ body {
     }
     
     body::before {
-        content: "手機樣式啟用中";
+        content: "手機模式";
         position: fixed;
         top: 0;
         left: 0;
