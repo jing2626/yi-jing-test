@@ -447,7 +447,7 @@ body {
     }
     
     body::before {
-        content: "手機模式";
+        content: "手機模式2.0";
         position: fixed;
         top: 0;
         left: 0;
