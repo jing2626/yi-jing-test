@@ -319,6 +319,10 @@ body {
     transform: scale(1.05);
 }
 
+.liu-shen {
+    color: #ab4ee6; /* 例如使用你設定的 #c8102e */
+}
+
 
 
 /* 爻線樣式 */
