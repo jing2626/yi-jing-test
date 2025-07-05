@@ -322,7 +322,7 @@ body {
 /* 爻線樣式 */
 .yao-line {
     font-family: monospace;
-    font-size: 0.85rem; /*1.2*/
+    font-size: 0.5rem; /*1.2*/
     font-weight: bold;
     letter-spacing: 2px;
 }
