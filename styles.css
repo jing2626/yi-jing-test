@@ -320,7 +320,7 @@ body {
 }
 
 .liu-shen {
-    color: #ab4ee6; /* 例如使用你設定的 #c8102e */
+    color: #ab4ee6 !important; /* 例如使用你設定的 #c8102e */
 }
 /* 新增在這裡!!!!更改顏色!!! */
 
@@ -453,7 +453,7 @@ body {
     }
     
     body::before {
-        content: "手機模式2.1";
+        content: "手機模式2.11";
         position: fixed;
         top: 0;
         left: 0;
