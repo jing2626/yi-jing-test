@@ -428,7 +428,8 @@ body {
         padding: 0 15px;
     }
     .gua-diagram td {
-        font-size: 3.5rem; /* 原本2.4rem => 提高一點，確保手機上明顯放大 */
+        font-size: 3rem; /* 原本2.4rem => 提高一點，確保手機上明顯放大 */
+        min-width:45px;
     }
 
     .yao-line {
@@ -443,7 +444,8 @@ body {
         padding: 5.5px;
     }
     .yao-image {
-        width: 25px; /* 原本 50px，手機上縮小一點 */
+        width: 25px;/* 原本 50px，手機上縮小一點 */
+        height:auto;
     }
     
     body::before {
@@ -480,7 +482,8 @@ body {
         padding: 15px;
     }
     .gua-diagram td {
-        font-size: 2.8rem; /* 原本2.4rem => 提高一點，確保手機上明顯放大 */
+        font-size: 2.8rem;/* 原本2.4rem => 提高一點，確保手機上明顯放大 */
+        min-width: 33.6px
     }
 
     .yao-line {
@@ -496,6 +499,7 @@ body {
     }
     .yao-image {
         width: 20px; /* 原本 50px，手機上縮小一點 */
+        height: auto;
     }
     
     body::before {
