@@ -404,6 +404,9 @@ body {
 
 /* 響應式設計 */
 @media (max-width: 1024px) {
+    htmi{
+        font-size: 15px
+    }
     .main-title {
         font-size: 2.5rem;
     }
@@ -458,6 +461,9 @@ body {
 
 
 @media (max-width: 480px) {
+    htmi{
+        font-size: 12px
+    }
     .main-title {
         font-size: 2rem;
     }
