@@ -322,7 +322,7 @@ body {
 .liu-shen {
     color: #ab4ee6; /* 例如使用你設定的 #c8102e */
 }
-
+/* 新增在這裡!!!!更改顏色!!! */
 
 
 /* 爻線樣式 */
@@ -453,7 +453,7 @@ body {
     }
     
     body::before {
-        content: "手機模式3.0";
+        content: "手機模式2.1";
         position: fixed;
         top: 0;
         left: 0;
