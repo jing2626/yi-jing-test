@@ -329,16 +329,6 @@ body {
     letter-spacing: 2px;
 }
 
-/*手機適應大小*/
-@media (max-width: 1024px) {
-    .gua-diagram td {
-        font-size: 2.4rem; /* 或 2.5rem、3rem 根據實測調整 */
-    }
-
-    .yao-line {
-        font-size: 0.4rem; /* 原本是 0.5rem，這邊可略微縮小 */
-    }
-}
 
 /* 底部樣式 */
 .footer {
@@ -413,7 +403,7 @@ body {
 }
 
 /* 響應式設計 */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .main-title {
         font-size: 2.5rem;
     }
@@ -434,7 +424,26 @@ body {
     .container {
         padding: 0 15px;
     }
+    .gua-diagram td {
+        font-size: 3rem; /* 原本2.4rem => 提高一點，確保手機上明顯放大 */
+    }
+
+    .yao-line {
+        font-size: 0.3rem; /* 再縮小一點爻線字體 */
+    }
+
+    .gua-diagram table {
+        border-spacing: 4px; /* 壓縮表格間距 */
+    }
+
+    .gua-diagram td {
+        padding: 6px;
+    }
+    .yao-image {
+        width: 30px; /* 原本 50px，手機上縮小一點 */
+    }
 }
+
 
 @media (max-width: 480px) {
     .main-title {
