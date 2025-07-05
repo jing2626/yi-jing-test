@@ -298,7 +298,7 @@ body {
 
 /* 卦象表格樣式 */
 .gua-diagram table {
-    width: 100%;
+    width: 120%; /*100*/
     border-collapse: separate;
     border-spacing: 8px;
     margin: 0 auto;
