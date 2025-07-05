@@ -330,7 +330,7 @@ body {
 }
 
 /*手機適應大小*/
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .gua-diagram td {
         font-size: 2.4rem; /* 或 2.5rem、3rem 根據實測調整 */
     }
