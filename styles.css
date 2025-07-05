@@ -405,7 +405,7 @@ body {
 /* 響應式設計 */
 @media (max-width: 1024px) {
     htmi{
-        font-size: 15px
+        font-size: 16px
     }
     .main-title {
         font-size: 2.5rem;
@@ -429,7 +429,7 @@ body {
     }
     .gua-diagram td {
         font-size: 3rem; /* 原本2.4rem => 提高一點，確保手機上明顯放大 */
-        min-width:45px;
+        min-width:48px;
     }
 
     .yao-line {
@@ -449,7 +449,7 @@ body {
     }
     
     body::before {
-        content: "手機模式2.0";
+        content: "手機模式3.0";
         position: fixed;
         top: 0;
         left: 0;
@@ -482,8 +482,8 @@ body {
         padding: 15px;
     }
     .gua-diagram td {
-        font-size: 2.8rem;/* 原本2.4rem => 提高一點，確保手機上明顯放大 */
-        min-width: 33.6px
+        font-size: 3rem;/* 原本2.4rem => 提高一點，確保手機上明顯放大 */
+        min-width: 36px
     }
 
     .yao-line {
