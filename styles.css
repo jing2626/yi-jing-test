@@ -1,4 +1,8 @@
-/* 重置和基礎樣式 */
+/* =========================================
+   易經卜卦系統 - 完整樣式表 (修正版)
+   ========================================= */
+
+/* --- 1. 基礎重置與變數定義 --- */
 * {
     margin: 0;
     padding: 0;
@@ -25,10 +29,10 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* 防止水平滾動條 */
 }
 
-/* 背景裝飾 */
+/* --- 2. 背景裝飾 --- */
 .background-decoration {
     position: fixed;
     top: 0;
@@ -69,7 +73,7 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* 容器和佈局 */
+/* --- 3. 容器與佈局 --- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -79,7 +83,7 @@ body {
     flex-direction: column;
 }
 
-/* 頭部樣式 */
+/* --- 4. 頭部樣式 --- */
 .header {
     padding: 40px 0;
     text-align: center;
@@ -115,7 +119,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* 主要內容區域 */
+/* --- 5. 主要內容區域 --- */
 .main-content {
     flex: 1;
     padding: 20px 0;
@@ -128,7 +132,7 @@ body {
     align-items: start;
 }
 
-/* 卡片樣式 */
+/* 卡片通用樣式 */
 .input-card, .result-card {
     background: white;
     border-radius: 20px;
@@ -166,7 +170,7 @@ body {
     color: var(--secondary-color);
 }
 
-/* 輸入組件 */
+/* --- 6. 輸入表單組件 --- */
 .input-group {
     margin-bottom: 25px;
 }
@@ -257,7 +261,7 @@ body {
     left: 100%;
 }
 
-/* 卦象名稱 */
+/* --- 7. 結果顯示區域 --- */
 .gua-name {
     font-family: 'Noto Serif TC', serif;
     font-size: 1.8rem;
@@ -271,7 +275,7 @@ body {
     border-left: 4px solid var(--accent-color);
 }
 
-/* 卦象圖表 */
+/* 卦象圖表容器 */
 .gua-diagram {
     min-height: 400px;
     display: flex;
@@ -296,60 +300,86 @@ body {
     50% { opacity: 1; }
 }
 
-/* 卦象表格樣式 */
-.gua-diagram table {
+/* --- 8. 卦象表格樣式 (核心樣式) --- */
+.gua-table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-light);
+    width: 100%; /* 確保容器寬度正確 */
+}
+
+.gua-table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 8px;
-    margin: 0 auto;
+    border-spacing: 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-.gua-diagram td {
-    padding: 8px;
+.gua-table th {
+    background: var(--gradient-gold);
+    color: var(--primary-color);
+    padding: 12px 8px;
+    font-weight: 600;
     text-align: center;
+    font-size: 0.9rem;
+}
+
+/* [電腦版預設] 表格內容樣式 */
+.gua-table td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
     font-weight: 500;
-    border-radius: 6px;
-    background: rgba(248, 246, 240, 0.5);
+    font-size: 1.5rem; /* 電腦版文字大小：適中，不要過大 */
     transition: all 0.3s ease;
-    font-size: 2rem; 
 }
 
-.gua-diagram td:hover {
+.gua-table td:hover {
     background: rgba(212, 175, 55, 0.1);
-    transform: scale(1.05);
 }
 
-.liu-shen {
-    color: #ab4ee6 !important; 
+.yao-row:hover {
+    background: rgba(212, 175, 55, 0.1);
 }
 
-/* 爻線樣式 */
-.yao-line {
-    font-family: monospace;
-    font-size: 0.5rem; 
+.dong-yao {
+    background: rgba(200, 16, 46, 0.05);
+}
+
+/* [電腦版預設] 動爻紅點與圖片樣式 */
+.dong-yao .dong-dot {
+    color: var(--accent-color);
+    font-size: 20px; /* 電腦版紅點大小 */
     font-weight: bold;
-    letter-spacing: 2px;
+    line-height: 1;
 }
 
-/* 爻象圖片 - 電腦版預設 (50px) */
+/* 爻象圖片：電腦版 50px */
 .yao-image {
-    width: 50px;
+    width: 50px; 
     height: auto;
     vertical-align: middle;
     transition: width 0.3s ease;
 }
 
-/* 動爻紅點 - 電腦版預設 (20px) */
-.dong-yao .dong-dot {
-    font-size: 12px !important;
-    transform: none !important; /* 移除原本的上移設定 */
-    vertical-align: middle !important; /* 強制垂直置中 */
-    line-height: 0; /* 消除行高造成的偏移 */
-    display: inline-block; /* 確保屬性生效 */
-    margin-top: 1px; /* 微幅光學校正，視情況可設為 0 */
+/* 爻線輔助文字 (如果有的話) */
+.yao-line {
+    font-family: monospace;
+    font-size: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-/* 底部樣式 */
+/* 文字顏色 */
+.changed-shou, .changed-zhi { color: var(--accent-color); font-weight: 600; }
+.shou, .zhi { color: #8B4513; }
+.liu-shen { color: #ab4ee6; font-weight: 600; }
+.shi-ying { color: var(--primary-color); font-weight: 600; }
+
+
+/* --- 9. 底部區域 --- */
 .footer {
     padding: 30px 0;
     text-align: center;
@@ -357,9 +387,7 @@ body {
     margin-top: 40px;
 }
 
-.footer-content {
-    color: var(--text-light);
-}
+.footer-content { color: var(--text-light); }
 
 .footer-decoration {
     margin-top: 10px;
@@ -368,7 +396,7 @@ body {
     letter-spacing: 10px;
 }
 
-/* 載入動畫 */
+/* --- 10. 載入動畫 --- */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -382,10 +410,7 @@ body {
     z-index: 1000;
 }
 
-.loading-content {
-    text-align: center;
-    color: white;
-}
+.loading-content { text-align: center; color: white; }
 
 .loading-taiji {
     width: 60px;
@@ -421,71 +446,119 @@ body {
     transform: translateX(-50%);
 }
 
-/* 響應式設計 */
+/* --- 11. 動畫效果 --- */
+.fade-in { animation: fadeIn 0.6s ease-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.glow-effect {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+    from { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+    to { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+}
+
 /* =========================================
-   修正手機版與平板的排版衝突
+   12. 響應式設計修正 (修正所有衝突)
    ========================================= */
 
+/* 平板與小筆電 (1024px 以下) */
 @media (max-width: 1024px) {
-    /* 平板/小筆電設定 */
+    html {
+        font-size: 16px;
+    }
+    .main-title {
+        font-size: 2.5rem;
+    }
     
-    /* 1. 修正字體大小：原本 3rem 太大了，改為 1.2rem */
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .input-card, .result-card {
+        padding: 20px;
+    }
+
+    /* 平板上的表格調整 */
     .gua-diagram td {
-        font-size: 1.2rem; 
+        font-size: 1.2rem; /* 稍微縮小字體 */
         padding: 6px 4px;
-        min-width: auto; /* 取消強制最小寬度 */
+        min-width: auto;   /* 移除最小寬度限制 */
     }
 
-    /* 圖片稍微縮小 */
     .yao-image {
-        width: 30px;
+        width: 35px; /* 圖片稍微縮小 */
     }
-
-    .yao-line {
-        font-size: 0.8rem;
+    
+    .gua-table th {
+        font-size: 0.85rem;
     }
 }
 
+/* 手機版 (768px 以下) - 這裡是修復的關鍵 */
 @media (max-width: 768px) {
-    /* 手機版設定 (最關鍵的修正區) */
-
-    /* 1. 修正表格字體：從 3rem 改為 0.95rem */
-    /* 這樣 8 個欄位才能塞進手機螢幕 */
-    .gua-diagram td {
-        font-size: 0.95rem !important; 
-        padding: 4px 1px; /* 極窄的內距 */
-        min-width: auto;  /* 移除原本的 min-width: 36px */
-        white-space: nowrap; /* 盡量不換行 */
-    }
-
-    /* 2. 爻象圖片：縮小至 25px */
-    .yao-image {
-        width: 25px !important;
-        margin: 0;
-    }
-
-    /* 3. 動爻紅點：縮小至 10px，避免撐開高度 */
-    .dong-yao .dong-dot {
-        font-size: 10px !important;
-        display: block;      /* 讓紅點獨立佔位，或視情況調整 */
-        line-height: 10px;
-        transform: translateY(0);
+    .main-title {
+        font-size: 2rem;
     }
     
-    /* 4. 針對表頭的字體也需要縮小 */
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .input-card, .result-card {
+        padding: 15px;
+    }
+
+    /* [重要修正] 表格字體強制縮小 
+       原本的 3rem 會導致版面炸裂，改為 0.95rem
+    */
+    .gua-diagram td {
+        font-size: 0.95rem !important; 
+        padding: 4px 1px; /* 極窄內距 */
+        min-width: auto;
+        white-space: nowrap; /* 避免文字不當斷行 */
+    }
+
+    /* 確保表頭文字也不要太大 */
     .gua-table th {
         font-size: 0.8rem;
         padding: 4px 1px;
     }
 
-    /* 5. 確保世應欄位不要太擠 */
+    /* [重要修正] 爻象圖片縮小 */
+    .yao-image {
+        width: 25px !important;
+        margin: 0;
+    }
+
+    /* [重要修正] 動爻紅點縮小，不隨字體放大 */
+    .dong-yao .dong-dot {
+        font-size: 10px !important;
+        line-height: 10px;
+        display: block;
+        transform: translateY(0);
+    }
+    
+    /* 針對世應欄位的微調，確保不會太擠 */
     .shi-ying {
         min-width: 1.5em;
     }
 }
 
+/* 小手機 (480px 以下) */
 @media (max-width: 480px) {
-    /* 小手機特別優化 */
+    html {
+        font-size: 14px;
+    }
     
     /* 字體再稍微縮小一點點以防爆版 */
     .gua-diagram td {
@@ -493,59 +566,12 @@ body {
     }
 
     .yao-image {
-        width: 20px !important;
+        width: 22px !important;
     }
     
-    /* 隱藏原本可能存在的 body::before 偵錯訊息 (紅色的條) */
+    /* 隱藏偵錯用標籤 */
     body::before {
         display: none;
     }
 }
-
-/* 動畫效果 */
-.fade-in {
-    animation: fadeIn 0.6s ease-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.slide-in {
-    animation: slideIn 0.8s ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* 特殊效果 */
-.glow-effect {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-    }
-    to {
-        box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
-    }
-}
-
 
