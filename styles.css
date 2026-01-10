@@ -334,6 +334,7 @@ body {
     font-weight: 500;
     font-size: 1.5rem; /* 電腦版文字大小：適中，不要過大 */
     transition: all 0.3s ease;
+    vertical-align: middle !important;
 }
 
 .gua-table td:hover {
@@ -543,9 +544,11 @@ body {
     /* [重要修正] 動爻紅點縮小，不隨字體放大 */
     .dong-yao .dong-dot {
         font-size: 10px !important;
-        line-height: 10px;
-        display: block;
-        transform: translateY(0);
+        line-height: 1;          /* 修正行高，避免被撐開 */
+        display: inline-block;   /* ★ 改回 inline-block 才能被 vertical-align 控制 */
+        vertical-align: middle;  /* 確保跟同一行的其他元素對齊 */
+        transform: none;         /* 移除位移 */
+        margin-top: 2px;
     }
     
     /* 針對世應欄位的微調，確保不會太擠 */
