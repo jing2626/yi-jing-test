@@ -311,7 +311,7 @@ body {
     border-radius: 6px;
     background: rgba(248, 246, 240, 0.5);
     transition: all 0.3s ease;
-    font-size: 2rem; /*這是新增的!!!*/
+    font-size: 2rem; 
 }
 
 .gua-diagram td:hover {
@@ -320,19 +320,34 @@ body {
 }
 
 .liu-shen {
-    color: #ab4ee6 !important; /* 例如使用你設定的 #c8102e */
+    color: #ab4ee6 !important; 
 }
-/* 新增在這裡!!!!更改顏色!!! */
-
 
 /* 爻線樣式 */
 .yao-line {
     font-family: monospace;
-    font-size: 0.5rem; /*1.2*/
+    font-size: 0.5rem; 
     font-weight: bold;
     letter-spacing: 2px;
 }
 
+/* 爻象圖片 - 電腦版預設 (50px) */
+.yao-image {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+    transition: width 0.3s ease;
+}
+
+/* 動爻紅點 - 電腦版預設 (20px) */
+.dong-yao .dong-dot {
+    color: var(--accent-color);
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
 
 /* 底部樣式 */
 .footer {
@@ -408,8 +423,8 @@ body {
 
 /* 響應式設計 */
 @media (max-width: 1024px) {
-    htmi{
-        font-size: 16px
+    html {
+        font-size: 16px;
     }
     .main-title {
         font-size: 2.5rem;
@@ -431,25 +446,32 @@ body {
     .container {
         padding: 0 15px;
     }
+
+    /* 手機/平板表格樣式優化 */
     .gua-diagram td {
-        font-size: 3rem; /* 原本2.4rem => 提高一點，確保手機上明顯放大 */
-        min-width:48px;
+        font-size: 3rem; /* 保持文字大 */
+        min-width: 30px; /* 縮小最小寬度 */
+        padding: 5px 2px; /* 縮小內距，把空間留給文字 */
     }
 
     .yao-line {
-        font-size: 0.3rem; /* 再縮小一點爻線字體 */
+        font-size: 0.3rem;
     }
 
     .gua-diagram table {
-        border-spacing: 3.5px; /* 壓縮表格間距 */
+        border-spacing: 3.5px;
     }
 
-    .gua-diagram td {
-        padding: 5.5px;
-    }
+    /* 爻象圖片 - 手機版 (25px) */
     .yao-image {
-        width: 25px;/* 原本 50px，手機上縮小一點 */
-        height:auto;
+        width: 25px !important;
+        margin: 0 2px;
+    }
+    
+    /* 動爻紅點 - 手機版 (12px, 避免過大) */
+    .dong-yao .dong-dot {
+        font-size: 12px !important;
+        transform: translateY(-2px);
     }
     
     body::before {
@@ -462,13 +484,14 @@ body {
         padding: 4px;
         z-index: 9999;
         font-size: 12px;
+        display: none; /* 隱藏除錯標籤 */
     }
 }
 
 
 @media (max-width: 480px) {
-    htmi{
-        font-size: 12px
+    html {
+        font-size: 12px;
     }
     .main-title {
         font-size: 2rem;
@@ -485,25 +508,29 @@ body {
     .input-card, .result-card {
         padding: 15px;
     }
+    
     .gua-diagram td {
-        font-size: 3rem;/* 原本2.4rem => 提高一點，確保手機上明顯放大 */
-        min-width: 36px
+        font-size: 3rem;
+        min-width: 25px;
+        padding: 4px 1px; /* 極窄邊距 */
     }
 
     .yao-line {
-        font-size: 0.2rem; /* 再縮小一點爻線字體 */
+        font-size: 0.2rem;
     }
 
     .gua-diagram table {
-        border-spacing: 2px; /* 壓縮表格間距 */
+        border-spacing: 2px;
     }
 
-    .gua-diagram td {
-        padding: 5px;
-    }
+    /* 小手機再次微調 */
     .yao-image {
-        width: 20px; /* 原本 50px，手機上縮小一點 */
-        height: auto;
+        width: 22px !important; 
+    }
+    
+    /* 紅點保持小巧 */
+    .dong-yao .dong-dot {
+        font-size: 10px !important;
     }
     
     body::before {
@@ -516,6 +543,7 @@ body {
         padding: 4px;
         z-index: 9999;
         font-size: 12px;
+        display: none; /* 隱藏除錯標籤 */
     }
 }
 
@@ -563,14 +591,6 @@ body {
     to {
         box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
     }
-}
-
-
-
-.yao-image {
-    width: 20px; /* 調整為您希望的寬度 */
-    height: auto;
-    vertical-align: middle;
 }
 
 
