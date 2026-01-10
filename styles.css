@@ -502,6 +502,9 @@ body {
 }
 
 /* 手機版 (768px 以下) - 這裡是修復的關鍵 */
+/* =========================================
+   手機版 (768px 以下) - 直排優化版
+   ========================================= */
 @media (max-width: 768px) {
     .main-title {
         font-size: 2rem;
@@ -519,41 +522,68 @@ body {
         padding: 15px;
     }
 
-    /* [重要修正] 表格字體強制縮小 
-       原本的 3rem 會導致版面炸裂，改為 0.95rem
-    */
-    .gua-diagram td {
-        font-size: 0.95rem !important; 
-        padding: 4px 1px; /* 極窄內距 */
-        min-width: auto;
-        white-space: nowrap; /* 避免文字不當斷行 */
+    /* --- 表格直排核心設定 --- */
+    
+    /* 1. 設定文字儲存格為直排 */
+    .gua-table th,
+    .gua-table td {
+        /* 關鍵：將文字改為垂直排列 */
+        writing-mode: vertical-rl; 
+        text-orientation: upright; /* 確保文字正立 */
+        letter-spacing: 2px;       /* 增加字距，讓直排更好讀 */
+        
+        /* 版面調整 */
+        padding: 10px 2px !important; /* 增加上下高度，減少左右寬度 */
+        height: auto;                 /* 讓高度自適應 */
+        vertical-align: middle;       /* 垂直置中 */
+        text-align: center;           /* 水平置中 */
+        
+        /* 字體放大 */
+        font-size: 1.15rem !important; /* 字體可以大膽放大！ */
     }
 
-    /* 確保表頭文字也不要太大 */
-    .gua-table th {
-        font-size: 0.8rem;
-        padding: 4px 1px;
+    /* 2. 特殊處理：爻象圖片和動爻紅點維持橫排 */
+    /* 因為圖片和圓點不需要直排，維持原狀比較好看 */
+    .gua-table td.yao-line,
+    .gua-table td.dong-dot {
+        writing-mode: horizontal-tb; /* 強制回歸橫排 */
+        padding: 5px 0 !important;
+        width: 35px; /* 固定寬度避免被擠壓 */
     }
 
-    /* [重要修正] 爻象圖片縮小 */
+    /* 3. 圖片大小調整 */
     .yao-image {
-        width: 25px !important;
-        margin: 0;
+        width: 30px !important; /* 圖片稍微調大一點，配合直排的高度 */
+        height: auto;
+        display: block;        /* 區塊顯示 */
+        margin: 0 auto;        /* 居中 */
     }
 
-    /* [重要修正] 動爻紅點縮小，不隨字體放大 */
+    /* 4. 動爻紅點調整 */
     .dong-yao .dong-dot {
-        font-size: 10px !important;
-        line-height: 1;          /* 修正行高，避免被撐開 */
-        display: inline-block;   /* ★ 改回 inline-block 才能被 vertical-align 控制 */
-        vertical-align: middle;  /* 確保跟同一行的其他元素對齊 */
-        transform: none;         /* 移除位移 */
-        margin-top: 2px;
+        font-size: 12px !important;
+        display: block;        /* 改為區塊，讓它在格子正中間 */
+        margin: 0 auto;
+        line-height: 1;
+    }
+
+    /* 5. 表頭微調 */
+    .gua-table th {
+        font-size: 0.9rem; /* 表頭字體稍小 */
+        background: var(--gradient-gold);
+        color: var(--primary-color);
+        height: 80px;      /* 給表頭足夠的高度放直排文字 */
+    }
+
+    /* 6. 修正表格列的高度 */
+    .yao-row {
+        height: 100px; /* 設定每一爻的最小高度，確保直排字放得下 */
     }
     
-    /* 針對世應欄位的微調，確保不會太擠 */
+    /* 7. 針對世應欄位的微調 */
     .shi-ying {
-        min-width: 1.5em;
+        color: var(--primary-color);
+        font-weight: bold;
     }
 }
 
