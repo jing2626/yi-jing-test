@@ -505,85 +505,85 @@ body {
 /* =========================================
    手機版 (768px 以下) - 直排優化版
    ========================================= */
+/* =========================================
+   手機版 (768px 以下) - 直排大字優化版
+   ========================================= */
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 2rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
-    .input-card, .result-card {
-        padding: 15px;
-    }
+    /* --- 標題字體調整 --- */
+    .main-title { font-size: 2rem; }
+    .subtitle { font-size: 1rem; }
+    .section-title { font-size: 1.5rem; }
+    .input-card, .result-card { padding: 15px; }
 
-    /* --- 表格直排核心設定 --- */
-    
-    /* 1. 設定文字儲存格為直排 */
+    /* --- 表格核心設定 (直排模式) --- */
     .gua-table th,
     .gua-table td {
-        /* 關鍵：將文字改為垂直排列 */
-        writing-mode: vertical-rl; 
-        text-orientation: upright; /* 確保文字正立 */
-        letter-spacing: 2px;       /* 增加字距，讓直排更好讀 */
+        /* 1. 設定為直排 */
+        writing-mode: vertical-rl;
+        text-orientation: upright;
         
-        /* 版面調整 */
-        padding: 10px 2px !important; /* 增加上下高度，減少左右寬度 */
-        height: auto;                 /* 讓高度自適應 */
-        vertical-align: middle;       /* 垂直置中 */
-        text-align: center;           /* 水平置中 */
+        /* 2. 字體極大化設定 */
+        font-size: 1.4rem !important;  /* 字體放大到約 22px */
+        padding: 4px 0 !important;     /* 將左右內距歸零，讓字可以更寬 */
+        letter-spacing: 1px;           /* 保持一點點字距以免黏在一起 */
         
-        /* 字體放大 */
-        font-size: 1.15rem !important; /* 字體可以大膽放大！ */
-    }
-
-    /* 2. 特殊處理：爻象圖片和動爻紅點維持橫排 */
-    /* 因為圖片和圓點不需要直排，維持原狀比較好看 */
-    .gua-table td.yao-line,
-    .gua-table td.dong-dot {
-        writing-mode: horizontal-tb; /* 強制回歸橫排 */
-        padding: 5px 0 !important;
-        width: 35px; /* 固定寬度避免被擠壓 */
-    }
-
-    /* 3. 圖片大小調整 */
-    .yao-image {
-        width: 30px !important; /* 圖片稍微調大一點，配合直排的高度 */
+        /* 3. 版面控制 */
         height: auto;
-        display: block;        /* 區塊顯示 */
-        margin: 0 auto;        /* 居中 */
+        vertical-align: middle;        /* 垂直置中 */
+        text-align: center;            /* 水平置中 */
+        border-bottom: 1px solid rgba(0,0,0,0.05); /* 稍微淡化分隔線 */
     }
 
-    /* 4. 動爻紅點調整 */
-    .dong-yao .dong-dot {
-        font-size: 12px !important;
-        display: block;        /* 改為區塊，讓它在格子正中間 */
-        margin: 0 auto;
-        line-height: 1;
-    }
-
-    /* 5. 表頭微調 */
+    /* --- 表頭特殊處理 --- */
     .gua-table th {
-        font-size: 0.9rem; /* 表頭字體稍小 */
+        font-size: 1rem;              /* 表頭字稍微小一點，做出層級 */
+        height: 90px;                 /* 給表頭足夠高度 */
         background: var(--gradient-gold);
         color: var(--primary-color);
-        height: 80px;      /* 給表頭足夠的高度放直排文字 */
+        padding: 5px 0 !important;
     }
 
-    /* 6. 修正表格列的高度 */
-    .yao-row {
-        height: 100px; /* 設定每一爻的最小高度，確保直排字放得下 */
+    /* --- 關鍵修正：動爻紅點 (●) --- */
+    .gua-table td.dong-dot {
+        writing-mode: horizontal-tb;   /* 強制改回橫排 (關鍵！) */
+        text-align: center;            /* 水平置中 */
+        vertical-align: middle;        /* 垂直置中 */
+        padding: 0 !important;         /* 移除內距 */
+        width: 30px;                   /* 固定寬度確保不被擠壓 */
+        line-height: 1;                /* 修正行高，避免被字體高度撐開 */
+    }
+
+    /* 紅點本體樣式 */
+    .dong-yao .dong-dot {
+        font-size: 14px !important;    /* 紅點大小 */
+        display: inline-block;         /* 確保是區塊元素 */
+        margin-top: 2px;               /* 微調視覺重心 */
+    }
+
+    /* --- 關鍵修正：爻象圖片 --- */
+    .gua-table td.yao-line {
+        writing-mode: horizontal-tb;   /* 圖片格也改回橫排 */
+        vertical-align: middle;
+        padding: 0 !important;
+        width: 40px;                   /* 給圖片足夠寬度 */
+    }
+
+    .yao-image {
+        width: 36px !important;        /* 圖片放大 */
+        height: auto;
+        display: block;
+        margin: 0 auto;                /* 圖片置中 */
     }
     
-    /* 7. 針對世應欄位的微調 */
+    /* --- 列高調整 --- */
+    .yao-row {
+        height: 130px; /* 增加每一列的高度，確保大字體不會被切掉 */
+    }
+    
+    /* --- 輔助微調 --- */
     .shi-ying {
         color: var(--primary-color);
-        font-weight: bold;
+        font-weight: 700;             /* 世應加粗 */
     }
 }
 
