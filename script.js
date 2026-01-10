@@ -447,8 +447,8 @@ function generateGuaDiagram(code, dong, shiYing, liuShenSeq, fullZhi, shouList, 
             <th>地支</th>
             <th>爻象</th>
             <th>動爻</th>
-            <th>六神</th>
             <th>世應</th>
+            <th>六神</th>
           </tr>
         </thead>
         <tbody>
@@ -473,8 +473,8 @@ function generateGuaDiagram(code, dong, shiYing, liuShenSeq, fullZhi, shouList, 
         <td class="zhi">${zhi}</td>
         <td class="yao-line">${yao}</td>
         <td class="dong-dot">${dot}</td>
-        <td class="liu-shen">${liuShen}</td>
         <td class="shi-ying">${label}</td>
+        <td class="liu-shen">${liuShen}</td>
       </tr>
     `;
   });
