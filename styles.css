@@ -341,12 +341,12 @@ body {
 
 /* 動爻紅點 - 電腦版預設 (20px) */
 .dong-yao .dong-dot {
-    color: var(--accent-color);
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 1;
-    display: inline-block;
-    vertical-align: middle;
+    font-size: 12px !important;
+    transform: none !important; /* 移除原本的上移設定 */
+    vertical-align: middle !important; /* 強制垂直置中 */
+    line-height: 0; /* 消除行高造成的偏移 */
+    display: inline-block; /* 確保屬性生效 */
+    margin-top: 1px; /* 微幅光學校正，視情況可設為 0 */
 }
 
 /* 底部樣式 */
@@ -485,6 +485,42 @@ body {
         z-index: 9999;
         font-size: 12px;
         display: none; /* 隱藏除錯標籤 */
+    }
+    /* --- 新增：手機版文字直向排列設定 --- */
+    
+    /* 針對所有文字欄位設定直排 */
+    .changed-shou, 
+    .changed-zhi, 
+    .shou, 
+    .zhi, 
+    .liu-shen, 
+    .shi-ying {
+        writing-mode: vertical-rl; /* 文字由上而下，行由右至左 */
+        text-orientation: upright; /* 確保中文字是正的，不是轉 90 度 */
+        white-space: nowrap;       /* 防止文字換行 */
+        letter-spacing: 0.2em;     /* 增加字距，讓直排文字更好讀 */
+        
+        /* 因為變直向了，可以把字體再放大一點 */
+        font-size: 3.5rem !important; 
+        
+        /* 讓直向文字在格子裡水平置中 */
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        
+        /* 調整內距，因為直排需要的是高度空間 */
+        padding: 8px 2px !important; 
+        min-height: 4em; /* 確保格子有足夠高度容納直排文字 */
+    }
+
+    /* 特別調整：因為世應只有一個字，可以微調 */
+    .shi-ying {
+        letter-spacing: 0;
+    }
+    
+    /* 確保表格內的圖片和紅點依然保持水平置中 */
+    .yao-line, .dong-dot {
+        text-align: center;
     }
 }
 
