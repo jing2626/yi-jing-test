@@ -422,164 +422,83 @@ body {
 }
 
 /* 響應式設計 */
+/* =========================================
+   修正手機版與平板的排版衝突
+   ========================================= */
+
 @media (max-width: 1024px) {
-    html {
-        font-size: 16px;
-    }
-    .main-title {
-        font-size: 2.5rem;
-    }
+    /* 平板/小筆電設定 */
     
-    .title-decoration {
-        margin: 0 8px;
-    }
-    
-    .content-wrapper {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .input-card, .result-card {
-        padding: 20px;
-    }
-    
-    .container {
-        padding: 0 15px;
+    /* 1. 修正字體大小：原本 3rem 太大了，改為 1.2rem */
+    .gua-diagram td {
+        font-size: 1.2rem; 
+        padding: 6px 4px;
+        min-width: auto; /* 取消強制最小寬度 */
     }
 
-    /* 手機/平板表格樣式優化 */
-    .gua-diagram td {
-        font-size: 3rem; /* 保持文字大 */
-        min-width: 30px; /* 縮小最小寬度 */
-        padding: 5px 2px; /* 縮小內距，把空間留給文字 */
+    /* 圖片稍微縮小 */
+    .yao-image {
+        width: 30px;
     }
 
     .yao-line {
-        font-size: 0.3rem;
-    }
-
-    .gua-diagram table {
-        border-spacing: 3.5px;
-    }
-
-    /* 爻象圖片 - 手機版 (25px) */
-    .yao-image {
-        width: 25px !important;
-        margin: 0 2px;
-    }
-    
-    /* 動爻紅點 - 手機版 (12px, 避免過大) */
-    .dong-yao .dong-dot {
-        font-size: 12px !important;
-        transform: translateY(-2px);
-    }
-    
-    body::before {
-        content: "手機模式2.11";
-        position: fixed;
-        top: 0;
-        left: 0;
-        background: red;
-        color: white;
-        padding: 4px;
-        z-index: 9999;
-        font-size: 12px;
-        display: none; /* 隱藏除錯標籤 */
-    }
-    /* --- 新增：手機版文字直向排列設定 --- */
-    
-    /* 針對所有文字欄位設定直排 */
-    .changed-shou, 
-    .changed-zhi, 
-    .shou, 
-    .zhi, 
-    .liu-shen, 
-    .shi-ying {
-        writing-mode: vertical-rl; /* 文字由上而下，行由右至左 */
-        text-orientation: upright; /* 確保中文字是正的，不是轉 90 度 */
-        white-space: nowrap;       /* 防止文字換行 */
-        letter-spacing: 0.2em;     /* 增加字距，讓直排文字更好讀 */
-        
-        /* 因為變直向了，可以把字體再放大一點 */
-        font-size: 3.5rem !important; 
-        
-        /* 讓直向文字在格子裡水平置中 */
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        
-        /* 調整內距，因為直排需要的是高度空間 */
-        padding: 8px 2px !important; 
-        min-height: 4em; /* 確保格子有足夠高度容納直排文字 */
-    }
-
-    /* 特別調整：因為世應只有一個字，可以微調 */
-    .shi-ying {
-        letter-spacing: 0;
-    }
-    
-    /* 確保表格內的圖片和紅點依然保持水平置中 */
-    .yao-line, .dong-dot {
-        text-align: center;
+        font-size: 0.8rem;
     }
 }
 
+@media (max-width: 768px) {
+    /* 手機版設定 (最關鍵的修正區) */
 
-@media (max-width: 480px) {
-    html {
-        font-size: 12px;
-    }
-    .main-title {
-        font-size: 2rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
-    .input-card, .result-card {
-        padding: 15px;
-    }
-    
+    /* 1. 修正表格字體：從 3rem 改為 0.95rem */
+    /* 這樣 8 個欄位才能塞進手機螢幕 */
     .gua-diagram td {
-        font-size: 3rem;
-        min-width: 25px;
-        padding: 4px 1px; /* 極窄邊距 */
+        font-size: 0.95rem !important; 
+        padding: 4px 1px; /* 極窄的內距 */
+        min-width: auto;  /* 移除原本的 min-width: 36px */
+        white-space: nowrap; /* 盡量不換行 */
     }
 
-    .yao-line {
-        font-size: 0.2rem;
-    }
-
-    .gua-diagram table {
-        border-spacing: 2px;
-    }
-
-    /* 小手機再次微調 */
+    /* 2. 爻象圖片：縮小至 25px */
     .yao-image {
-        width: 22px !important; 
+        width: 25px !important;
+        margin: 0;
     }
-    
-    /* 紅點保持小巧 */
+
+    /* 3. 動爻紅點：縮小至 10px，避免撐開高度 */
     .dong-yao .dong-dot {
         font-size: 10px !important;
+        display: block;      /* 讓紅點獨立佔位，或視情況調整 */
+        line-height: 10px;
+        transform: translateY(0);
     }
     
+    /* 4. 針對表頭的字體也需要縮小 */
+    .gua-table th {
+        font-size: 0.8rem;
+        padding: 4px 1px;
+    }
+
+    /* 5. 確保世應欄位不要太擠 */
+    .shi-ying {
+        min-width: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    /* 小手機特別優化 */
+    
+    /* 字體再稍微縮小一點點以防爆版 */
+    .gua-diagram td {
+        font-size: 0.85rem !important;
+    }
+
+    .yao-image {
+        width: 20px !important;
+    }
+    
+    /* 隱藏原本可能存在的 body::before 偵錯訊息 (紅色的條) */
     body::before {
-        content: "小手機模式";
-        position: fixed;
-        top: 0;
-        left: 0;
-        background: red;
-        color: white;
-        padding: 4px;
-        z-index: 9999;
-        font-size: 12px;
-        display: none; /* 隱藏除錯標籤 */
+        display: none;
     }
 }
 
