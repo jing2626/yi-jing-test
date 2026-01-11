@@ -352,9 +352,13 @@ body {
 /* [電腦版預設] 動爻紅點與圖片樣式 */
 .dong-yao .dong-dot {
     color: var(--accent-color);
-    font-size: 20px; /* 電腦版紅點大小 */
     font-weight: bold;
     line-height: 1;
+}
+
+.dong-yao .dong-dot .v-text,
+.dong-yao .dong-dot {
+    font-size: 14px; /* 建議：從 20px 改為 14px，視覺上會更像一個精緻的標記 */
 }
 
 /* 爻象圖片：電腦版 50px */
@@ -463,44 +467,6 @@ body {
     to { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
 }
 
-/* =========================================
-   12. 響應式設計修正 (修正所有衝突)
-   ========================================= */
-
-/* 平板與小筆電 (1024px 以下) */
-@media (max-width: 1024px) {
-    html {
-        font-size: 16px;
-    }
-    .main-title {
-        font-size: 2.5rem;
-    }
-    
-    .content-wrapper {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .input-card, .result-card {
-        padding: 20px;
-    }
-
-    /* 平板上的表格調整 */
-    .gua-diagram td {
-        font-size: 1.2rem; /* 稍微縮小字體 */
-        padding: 6px 4px;
-        min-width: auto;   /* 移除最小寬度限制 */
-    }
-
-    .yao-image {
-        width: 35px; /* 圖片稍微縮小 */
-    }
-    
-    .gua-table th {
-        font-size: 0.85rem;
-    }
-}
-
 /* --- 新增：日期與農民曆顯示區塊 --- */
 .date-info-box {
     background: linear-gradient(to right, #fff9f0, #fff);
@@ -536,88 +502,122 @@ body {
 }
 
 /* =========================================
-   手機版 (768px 以下) - 直排優化版
+   12. 響應式設計修正 (修正所有衝突)
    ========================================= */
 /* =========================================
-   手機版 (768px 以下) - 直排大字優化版
+   12. 響應式設計修正 (768px 統一整合版)
    ========================================= */
+
 @media (max-width: 768px) {
-    /* --- 標題字體調整 --- */
-    .main-title { font-size: 2rem; }
+    /* --- A. 基礎版面重組 (整併原 1024px 功能) --- */
+    html {
+        font-size: 16px;
+    }
+    .content-wrapper {
+        grid-template-columns: 1fr; /* 關鍵：強制變為上下單欄 */
+        gap: 30px;
+    }
+    
+    /* --- B. 字體與間距調整 (保留原始設定) --- */
+    .header { padding: 30px 0; }
+    .main-title { font-size: 2rem; margin-bottom: 5px; }
     .subtitle { font-size: 1rem; }
     .section-title { font-size: 1.5rem; }
-    .input-card, .result-card { padding: 15px; }
+    .input-card, .result-card { padding: 15px; } /* 手機版內距 */
 
-    /* --- 表格核心設定 (直排模式) --- */
+    /* 輸入區優化 */
+    .input-field, .select-field { font-size: 1rem; padding: 12px; }
+    .calculate-btn { padding: 15px; font-size: 1.1rem; }
+
+    /* =========================================
+       C. 表格核心修正 (iOS 直排相容方案)
+       ========================================= */
+    
+    /* 1. 表格儲存格重置：回歸橫排，作為容器 */
     .gua-table th,
     .gua-table td {
-        /* 1. 設定為直排 */
-        writing-mode: vertical-rl;
-        text-orientation: upright;
-        
-        /* 2. 字體極大化設定 */
-        font-size: 1.4rem !important;  /* 字體放大到約 22px */
-        padding: 4px 0 !important;     /* 將左右內距歸零，讓字可以更寬 */
-        letter-spacing: 1px;           /* 保持一點點字距以免黏在一起 */
-        
-        /* 3. 版面控制 */
+        writing-mode: horizontal-tb; /* 強制橫排，解決 iPhone 渲染問題 */
+        text-orientation: mixed;
         height: auto;
-        vertical-align: middle;        /* 垂直置中 */
-        text-align: center;            /* 水平置中 */
-        border-bottom: 1px solid rgba(0,0,0,0.05); /* 稍微淡化分隔線 */
+        vertical-align: middle;
+        text-align: center;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding: 4px 0 !important;   /* 保留原本的窄內距 */
     }
 
-    /* --- 表頭特殊處理 --- */
+    /* 2. 文字內容 (.v-text)：負責直排與大字體 */
+    /* 這裡繼承了您原本 td 的大字體設定 */
+    .v-text {
+        /* 直排核心設定 */
+        writing-mode: vertical-rl;
+        -webkit-writing-mode: vertical-rl;
+        text-orientation: upright;
+        display: inline-block;
+        
+        /* 視覺樣式 (保留原檔案數值) */
+        font-size: 1.4rem !important; /* 22px 大字 */
+        letter-spacing: 1px;
+        line-height: 1.2;
+        margin: 0 auto;
+    }
+
+    /* 3. 表頭特殊處理 */
     .gua-table th {
-        font-size: 1rem;              /* 表頭字稍微小一點，做出層級 */
-        height: 90px;                 /* 給表頭足夠高度 */
+        font-size: 1rem;
+        height: 90px; /* 保留高度 */
         background: var(--gradient-gold);
         color: var(--primary-color);
         padding: 5px 0 !important;
+        
+        /* 表頭直排 */
+        writing-mode: vertical-rl;
+        -webkit-writing-mode: vertical-rl;
+        text-orientation: upright;
     }
 
-    /* --- 關鍵修正：動爻紅點 (●) --- */
+    /* 4. 動爻紅點 (●) 修正 */
     .gua-table td.dong-dot {
-        writing-mode: horizontal-tb;   /* 強制改回橫排 (關鍵！) */
-        text-align: center;            /* 水平置中 */
-        vertical-align: middle;        /* 垂直置中 */
-        padding: 0 !important;         /* 移除內距 */
-        width: 30px;                   /* 固定寬度確保不被擠壓 */
-        line-height: 1;                /* 修正行高，避免被字體高度撐開 */
-    }
-
-    /* 紅點本體樣式 */
-    .dong-yao .dong-dot {
-        font-size: 8px !important; /* 紅點大小 */
-        height: auto;  
-        display: block;         /* 確保是區塊元素 */
-        margin-top: 35px;               /* 微調視覺重心 */
-    }
-
-    /* --- 關鍵修正：爻象圖片 --- */
-    .gua-table td.yao-line {
-        writing-mode: horizontal-tb;   /* 圖片格也改回橫排 */
-        vertical-align: middle;
+        width: 25px;
         padding: 0 !important;
-        width: 35px;                   /* 給圖片足夠寬度 */
+    }
+    
+    .dong-yao .dong-dot .v-text{
+        font-size: 10px !important;
+        height: auto;
+        color: var(--accent-color);
+        display: block;
+        margin-top: 1px; 
+        line-height: 1;
+    }
+
+    /* 5. 爻象圖片修正 */
+    .gua-table td.yao-line {
+        width: 35px;
+        padding: 0 !important;
     }
 
     .yao-image {
-        width: 30px !important;        /* 圖片放大 */
+        width: 30px !important;
         height: auto;
         display: block;
-        margin: 0 auto;                /* 圖片置中 */
+        margin: 0 auto;
     }
     
-    /* --- 列高調整 --- */
+    /* 6. 列高與顏色 (保留原始設定) */
     .yao-row {
-        height: 80px; /* 增加每一列的高度，確保大字體不會被切掉 */
+        height: 95px; /* 保留 80px 高度 */
     }
     
-    /* --- 輔助微調 --- */
-    .shi-ying {
+    .shi-ying .v-text {
         color: var(--primary-color);
-        font-weight: 700;             /* 世應加粗 */
+        font-weight: 700;
     }
+    
+    .liu-shen .v-text {
+        font-size: 1.1rem; /* 稍微縮小以區隔層級 */
+        color: #ab4ee6;
+        font-weight: 600;
+    }
+}
 }
 
