@@ -502,109 +502,69 @@ body {
 }
 
 /* =========================================
-   12. 行動裝置最終修復版 (解決併排與背景衝突)
+   12. iPhone / Safari 專屬相容性強化版
    ========================================= */
 
 @media (max-width: 768px) {
-    /* 1. 解決背景撞標題：手機端直接隱藏旋轉太極，保持畫面乾淨 */
-    .background-decoration {
-        display: none !important;
-    }
-
-    /* 2. 解決框框只據一半：強制改為「上下排列」，寬度 100% */
+    /* 強制解除所有 Grid 佈局，改用最穩定的 Block 堆疊 */
     .content-wrapper {
-        display: flex !important;
-        flex-direction: column !important;
-        grid-template-columns: none !important; /* 徹底取消網格 */
-        gap: 20px !important;
-    }
-
-    .container {
-        padding: 0 10px !important;
-    }
-
-    .input-section, .result-section {
-        width: 100% !important; /* 確保左右撐滿 */
+        display: block !important; /* 捨棄 Flex/Grid，直接堆疊 */
+        width: 100% !important;
     }
 
     .input-card, .result-card {
+        display: block !important;
         width: 100% !important;
-        box-sizing: border-box !important;
-        padding: 20px 15px !important;
-        margin: 0 !important;
-    }
-
-    /* 3. 調整頁首標題大小，避免太擁擠 */
-    .header {
         margin-bottom: 20px !important;
-        padding: 25px 0 !important;
-    }
-    .main-title {
-        font-size: 1.8rem !important;
-    }
-    .subtitle {
-        font-size: 0.9rem !important;
+        box-sizing: border-box !important;
     }
 
-    /* 4. 表格佈局與比例優化 (不限制字體大小，改用比例) */
-    .gua-table {
-        table-layout: fixed !important; /* 固定比例停車位 */
-        width: 100% !important;
-    }
-
+    /* 針對 Safari 的直排文字計算優化 */
     .v-text {
         writing-mode: vertical-rl !important;
-        -webkit-writing-mode: vertical-rl;
-        text-orientation: upright;
+        -webkit-writing-mode: vertical-rl !important; /* 強制 WebKit 前綴 */
+        text-orientation: upright !important;
+        white-space: nowrap !important; /* 絕不換行，解決鏡像問題 */
         
-        /* 徹底解決「母父」翻轉：絕對禁止換行 */
-        white-space: nowrap !important; 
-        
-        display: inline-block;
-        /* 字體隨螢幕寬度自動縮放，保證在不同手機上比例一致 */
-        font-size: clamp(14px, 4.5vw, 19px) !important; 
-        line-height: 1.1;
-        margin: 0 auto;
+        /* 避免 WebKit 下的寬度擠壓 */
+        display: block !important;
+        margin: 0 auto !important;
+        font-size: clamp(14px, 4.3vw, 18px) !important;
+        line-height: 1.2;
     }
 
-    /* 分配各欄位佔比 (總和 100%) */
-    .changed-shou, .changed-zhi, .shou, .zhi, .shi-ying { 
-        width: 11%; 
-    }
-    .yao-line { width: 15%; } /* 圖片空間 */
-    .dong-dot { width: 7%; }  /* 紅點空間 */
-    .liu-shen { width: 23%; } /* 六獸名稱較長，給予更多空間 */
-
-    .yao-image {
-        width: 85% !important;
-        height: auto;
-        max-width: 35px;
-        display: block;
-        margin: 0 auto;
-    }
-    /* 5. 動爻紅點微型化處理 (修正太大問題) */
+    /* 動爻紅點：精細化縮小 */
     .dong-yao .dong-dot .v-text {
         color: var(--accent-color);
-        /* 大幅調降字體大小：設定在 8px 到 12px 之間 */
-        font-size: clamp(8px, 2.2vw, 12px) !important; 
-        
-        /* 增加一點透明度，讓視覺感更輕盈，不會太沉重 */
-        opacity: 0.85; 
-        
-        /* 強制居中並微調間距 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        line-height: 1;
-        
-        /* 避免這個欄位被撐開 */
-        width: 100%;
+        font-size: 10px !important; /* 直接給定固定小尺寸 */
+        opacity: 0.9;
+        transform: scale(0.8); /* 額外縮小比例 */
+    }
+
+    /* 處理黑色大塊：如果圖片讀取失敗，直接隱藏 */
+    .yao-image {
+        max-width: 30px !important;
+        height: auto !important;
+        display: block;
+        margin: 0 auto;
+        /* 防止圖片損壞時顯示巨大的黑塊 */
+        alt: ""; 
+        content: ""; /* 若圖標破損，清空其顯示內容 */
+        background: none !important;
     }
     
-    /* 同時微調動爻欄位的寬度比例，讓它更精簡 */
-    .dong-dot { 
-        width: 6% !important; /* 從 8% 縮減至 6% */
+    /* 修正圖片實際顯示方式 */
+    .yao-image[src] {
+        content: initial !important; /* 只有當 src 存在時才顯示內容 */
     }
+
+    /* 欄位寬度嚴格固定比例 */
+    .gua-table {
+        table-layout: fixed !important;
+    }
+    .changed-shou, .changed-zhi, .shou, .zhi, .shi-ying { width: 11%; }
+    .yao-line { width: 14%; }
+    .dong-dot { width: 6%; }
+    .liu-shen { width: 24%; }
 }
 
