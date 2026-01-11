@@ -455,14 +455,14 @@ function generateGuaDiagram(code, dong, shiYing, liuShenSeq, fullZhi, shouList, 
 
     diagram += `
       <tr class="yao-row ${isDong ? 'dong-yao' : ''}" style="animation-delay: ${i * 0.1}s">
-        <td class="changed-shou">${changedShou}</td>
-        <td class="changed-zhi">${changedZhi}</td>
-        <td class="shou">${shou}</td>
-        <td class="zhi">${zhi}</td>
-        <td class="yao-line">${yao}</td>
-        <td class="dong-dot">${dot}</td>
-        <td class="shi-ying">${label}</td>
-        <td class="liu-shen">${liuShen}</td>
+        <td class="changed-shou"><div class="v-text">${changedShou}</div></td>
+        <td class="changed-zhi"><div class="v-text">${changedZhi}</div></td>
+        <td class="shou"><div class="v-text">${shou}</div></td>
+        <td class="zhi"><div class="v-text">${zhi}</div></td>
+        <td class="yao-line"><div class="v-text">${yao}</div></td>
+        <td class="dong-dot"><div class="v-text">${dot}</div></td>
+        <td class="shi-ying"><div class="v-text">${label}</div></td>
+        <td class="liu-shen"><div class="v-text">${liuShen}</div></td>
       </tr>
     `;
   });
