@@ -1,0 +1,623 @@
+/* =========================================
+   易經卜卦系統 - 完整樣式表 (修正版)
+   ========================================= */
+
+/* --- 1. 基礎重置與變數定義 --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #d4af37;
+    --accent-color: #c8102e;
+    --background-color: #f8f6f0;
+    --text-color: #333333;
+    --text-light: #666666;
+    --border-color: #e0ddd4;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --shadow-heavy: rgba(0, 0, 0, 0.25);
+    --gradient-gold: linear-gradient(135deg, #d4af37, #f4e4a6);
+    --gradient-red: linear-gradient(135deg, #c8102e, #e85d75);
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* 防止水平滾動條 */
+}
+
+/* --- 2. 背景裝飾 --- */
+.background-decoration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.taiji-bg {
+    position: absolute;
+    top: 10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at 50% 25%, var(--primary-color) 25%, transparent 25%),
+                radial-gradient(circle at 50% 75%, var(--background-color) 25%, transparent 25%),
+                linear-gradient(90deg, var(--primary-color) 50%, var(--background-color) 50%);
+    border-radius: 50%;
+    opacity: 0.03;
+    animation: rotate 60s linear infinite;
+}
+
+.cloud-pattern {
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 Q30,30 50,50 Q70,30 80,50 Q70,70 50,50 Q30,70 20,50" fill="none" stroke="%23d4af37" stroke-width="0.5" opacity="0.3"/></svg>');
+    background-size: 50px 50px;
+    opacity: 0.1;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* --- 3. 容器與佈局 --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 4. 頭部樣式 --- */
+.header {
+    padding: 40px 0;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(200, 16, 46, 0.1));
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px var(--shadow-light);
+}
+
+.header-content {
+    position: relative;
+}
+
+.main-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px var(--shadow-light);
+}
+
+.title-decoration {
+    color: var(--secondary-color);
+    font-size: 0.8em;
+    margin: 0 15px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+/* --- 5. 主要內容區域 --- */
+.main-content {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* 卡片通用樣式 */
+.input-card, .result-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px var(--shadow-medium);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.input-card::before, .result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-gold);
+}
+
+/* 區塊標題 */
+.section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title .icon {
+    font-size: 1.5em;
+    color: var(--secondary-color);
+}
+
+/* --- 6. 輸入表單組件 --- */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.label-text {
+    font-weight: 500; 
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.label-hint {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+.input-field, .select-field {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-field:focus, .select-field:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.input-field:hover, .select-field:hover {
+    border-color: var(--secondary-color);
+}
+
+/* 計算按鈕 */
+.calculate-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--gradient-gold);
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1.2em;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.calculate-btn:hover .btn-glow {
+    left: 100%;
+}
+
+/* --- 7. 結果顯示區域 --- */
+.gua-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(200, 16, 46, 0.1), rgba(212, 175, 55, 0.1));
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-color);
+}
+
+/* 卦象圖表容器 */
+.gua-diagram {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-content {
+    text-align: center;
+    color: var(--text-light);
+}
+
+.placeholder-taiji {
+    font-size: 4rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* --- 8. 卦象表格樣式 (核心樣式) --- */
+.gua-table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-light);
+    width: 100%; /* 確保容器寬度正確 */
+}
+
+.gua-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.gua-table th {
+    background: var(--gradient-gold);
+    color: var(--primary-color);
+    padding: 12px 8px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* [電腦版預設] 表格內容樣式 */
+.gua-table td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 500;
+    font-size: 1.5rem; /* 電腦版文字大小：適中，不要過大 */
+    transition: all 0.3s ease;
+    vertical-align: middle !important;
+}
+
+.gua-table td:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.yao-row:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.dong-yao {
+    background: rgba(200, 16, 46, 0.05);
+}
+
+/* [電腦版預設] 動爻紅點與圖片樣式 */
+.dong-yao .dong-dot {
+    color: var(--accent-color);
+    font-size: 20px; /* 電腦版紅點大小 */
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* 爻象圖片：電腦版 50px */
+.yao-image {
+    width: 50px; 
+    height: auto;
+    vertical-align: middle;
+    transition: width 0.3s ease;
+}
+
+/* 爻線輔助文字 (如果有的話) */
+.yao-line {
+    font-family: monospace;
+    font-size: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* 文字顏色 */
+.changed-shou, .changed-zhi { color: var(--accent-color); font-weight: 600; }
+.shou, .zhi { color: #8B4513; }
+.liu-shen { color: #ab4ee6; font-weight: 600; }
+.shi-ying { color: var(--primary-color); font-weight: 600; }
+
+
+/* --- 9. 底部區域 --- */
+.footer {
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+}
+
+.footer-content { color: var(--text-light); }
+
+.footer-decoration {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    letter-spacing: 10px;
+}
+
+/* --- 10. 載入動畫 --- */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loading-content { text-align: center; color: white; }
+
+.loading-taiji {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--primary-color) 50%, var(--background-color) 50%);
+    position: relative;
+    animation: rotate 2s linear infinite;
+}
+
+.loading-taiji::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: var(--background-color);
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+.loading-taiji::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+/* --- 11. 動畫效果 --- */
+.fade-in { animation: fadeIn 0.6s ease-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.glow-effect {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+    from { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+    to { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+}
+
+/* =========================================
+   12. 響應式設計修正 (修正所有衝突)
+   ========================================= */
+
+/* 平板與小筆電 (1024px 以下) */
+@media (max-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .input-card, .result-card {
+        padding: 20px;
+    }
+
+    /* 平板上的表格調整 */
+    .gua-diagram td {
+        font-size: 1.2rem; /* 稍微縮小字體 */
+        padding: 6px 4px;
+        min-width: auto;   /* 移除最小寬度限制 */
+    }
+
+    .yao-image {
+        width: 35px; /* 圖片稍微縮小 */
+    }
+    
+    .gua-table th {
+        font-size: 0.85rem;
+    }
+}
+
+/* --- 新增：日期與農民曆顯示區塊 --- */
+.date-info-box {
+    background: linear-gradient(to right, #fff9f0, #fff);
+    border: 1px solid var(--secondary-color);
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.1);
+}
+
+.date-primary {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.date-secondary {
+    font-size: 1rem;
+    color: #888; /* 灰色字體，比較柔和 */
+    font-weight: 500;
+}
+
+/* 針對農曆干支的強調色 (紅) */
+.date-ganzhi {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin: 0 4px;
+}
+
+/* =========================================
+   手機版 (768px 以下) - 直排優化版
+   ========================================= */
+/* =========================================
+   手機版 (768px 以下) - 直排大字優化版
+   ========================================= */
+@media (max-width: 768px) {
+    /* --- 標題字體調整 --- */
+    .main-title { font-size: 2rem; }
+    .subtitle { font-size: 1rem; }
+    .section-title { font-size: 1.5rem; }
+    .input-card, .result-card { padding: 15px; }
+
+    /* --- 表格核心設定 (直排模式) --- */
+    .gua-table th,
+    .gua-table td {
+        /* 1. 設定為直排 */
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        
+        /* 2. 字體極大化設定 */
+        font-size: 1.4rem !important;  /* 字體放大到約 22px */
+        padding: 4px 0 !important;     /* 將左右內距歸零，讓字可以更寬 */
+        letter-spacing: 1px;           /* 保持一點點字距以免黏在一起 */
+        
+        /* 3. 版面控制 */
+        height: auto;
+        vertical-align: middle;        /* 垂直置中 */
+        text-align: center;            /* 水平置中 */
+        border-bottom: 1px solid rgba(0,0,0,0.05); /* 稍微淡化分隔線 */
+    }
+
+    /* --- 表頭特殊處理 --- */
+    .gua-table th {
+        font-size: 1rem;              /* 表頭字稍微小一點，做出層級 */
+        height: 90px;                 /* 給表頭足夠高度 */
+        background: var(--gradient-gold);
+        color: var(--primary-color);
+        padding: 5px 0 !important;
+    }
+
+    /* --- 關鍵修正：動爻紅點 (●) --- */
+    .gua-table td.dong-dot {
+        writing-mode: horizontal-tb;   /* 強制改回橫排 (關鍵！) */
+        text-align: center;            /* 水平置中 */
+        vertical-align: middle;        /* 垂直置中 */
+        padding: 0 !important;         /* 移除內距 */
+        width: 30px;                   /* 固定寬度確保不被擠壓 */
+        line-height: 1;                /* 修正行高，避免被字體高度撐開 */
+    }
+
+    /* 紅點本體樣式 */
+    .dong-yao .dong-dot {
+        font-size: 8px !important; /* 紅點大小 */
+        height: auto;  
+        display: block;         /* 確保是區塊元素 */
+        margin-top: 35px;               /* 微調視覺重心 */
+    }
+
+    /* --- 關鍵修正：爻象圖片 --- */
+    .gua-table td.yao-line {
+        writing-mode: horizontal-tb;   /* 圖片格也改回橫排 */
+        vertical-align: middle;
+        padding: 0 !important;
+        width: 35px;                   /* 給圖片足夠寬度 */
+    }
+
+    .yao-image {
+        width: 30px !important;        /* 圖片放大 */
+        height: auto;
+        display: block;
+        margin: 0 auto;                /* 圖片置中 */
+    }
+    
+    /* --- 列高調整 --- */
+    .yao-row {
+        height: 80px; /* 增加每一列的高度，確保大字體不會被切掉 */
+    }
+    
+    /* --- 輔助微調 --- */
+    .shi-ying {
+        color: var(--primary-color);
+        font-weight: 700;             /* 世應加粗 */
+    }
+}
+
