@@ -505,8 +505,41 @@ body {
    12. iPhone / Safari 專屬相容性強化版
    ========================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     /* 強制解除所有 Grid 佈局，改用最穩定的 Block 堆疊 */
+    /* --- 1. 防止瀏覽器擅自放大文字 --- */
+    html {
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+    }
+
+    /* --- 2. 頁首與標題強制縮小 (解決巨大標題問題) --- */
+    .header {
+        padding: 15px 5px !important;
+        margin-bottom: 20px !important;
+        border-radius: 0 0 20px 20px !important;
+    }
+
+    .main-title {
+        font-size: 1.5rem !important; /* 強制縮小到桌機版的一半以下 */
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap !important; /* 強制不換行 */
+        letter-spacing: 1px !important;
+    }
+
+    .title-decoration {
+        font-size: 0.8rem !important; /* 菱形標誌也要跟著縮小 */
+        margin: 0 5px !important;
+    }
+
+    .subtitle {
+        font-size: 0.85rem !important;
+        letter-spacing: 1px !important;
+        opacity: 0.8;
+    }
+
     .content-wrapper {
         display: block !important; /* 捨棄 Flex/Grid，直接堆疊 */
         width: 100% !important;
